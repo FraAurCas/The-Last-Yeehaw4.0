@@ -48,7 +48,7 @@ public class WorldController : MonoBehaviour
     void Update()
     {
         DayNightCycle();
-        SpawnZombies();
+        //SpawnZombies();
         SpawnPickups();
     }
 
@@ -89,7 +89,7 @@ public class WorldController : MonoBehaviour
         {
             if ((int)Random.Range(1, 100) == 50)
             {
-                Instantiate(zombie, zombieSpawns[Random.Range(0, 11)]);
+                Instantiate(zombie, zombieSpawns[Random.Range(0, 10)]);
             }
         }
 
@@ -97,7 +97,7 @@ public class WorldController : MonoBehaviour
         {
             if ((int)Random.Range(1, 1000) == 50)
             {
-                Instantiate(zombie, zombieSpawns[Random.Range(0, 11)]);
+                Instantiate(zombie, zombieSpawns[Random.Range(0, 10)]);
                 Debug.Log("zombie spawned");
             }
         }
@@ -122,7 +122,7 @@ public class WorldController : MonoBehaviour
                 {
                     if (medkitAmount <= 8)
                     {
-                        Instantiate(health, healthSpawns[Random.Range(0, 11)]);
+                        Instantiate(health, healthSpawns[Random.Range(0, 10)]);
                         Debug.Log("health spawned");
                         medkitAmount++;
                     }
@@ -135,7 +135,7 @@ public class WorldController : MonoBehaviour
                 {
                     if (ammoAmount <= 8)
                     {
-                        Instantiate(ammo, ammoSpawns[Random.Range(0, 11)]);
+                        Instantiate(ammo, ammoSpawns[Random.Range(0, 10)]);
                         Debug.Log("ammo spawned");
                         ammoAmount++;
                     }

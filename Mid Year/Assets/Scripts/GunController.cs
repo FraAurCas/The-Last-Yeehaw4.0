@@ -70,6 +70,12 @@ public class GunController : MonoBehaviour
                     {
                         Destroy(hit.collider.gameObject);
                     }
+
+                }
+
+                if(hit.collider.tag == "Target")
+                {
+                    hit.collider.GetComponent<Rigidbody>().AddForceAtPosition((Camera.main.transform.forward + new Vector3(0, 1, 0)) * 10, hit.point, ForceMode.Impulse);
                 }
             }
 
