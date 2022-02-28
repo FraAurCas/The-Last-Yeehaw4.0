@@ -42,6 +42,8 @@ public class WorldController : MonoBehaviour
         healthSpawns = new List<Transform> { house1.transform.GetChild(0), house2.transform.GetChild(0), house3.transform.GetChild(0), house4.transform.GetChild(0), house5.transform.GetChild(0), house6.transform.GetChild(0), house7.transform.GetChild(0), house8.transform.GetChild(0), house9.transform.GetChild(0), house10.transform.GetChild(0)};
         zombieSpawns = new List<Transform> { house1.transform.GetChild(1), house2.transform.GetChild(1), house3.transform.GetChild(1), house4.transform.GetChild(1), house5.transform.GetChild(1), house6.transform.GetChild(1), house7.transform.GetChild(1), house8.transform.GetChild(1), house9.transform.GetChild(1), house10.transform.GetChild(1)};
         ammoSpawns = new List<Transform> { house1.transform.GetChild(2), house2.transform.GetChild(2), house3.transform.GetChild(2), house4.transform.GetChild(2), house5.transform.GetChild(2), house6.transform.GetChild(2), house7.transform.GetChild(2), house8.transform.GetChild(2), house9.transform.GetChild(2), house10.transform.GetChild(2)};
+        Invoke("SpawnZombie", 2);
+        Invoke("SpawnPickup", 4);
     }
 
     // Update is called once per frame
@@ -49,7 +51,7 @@ public class WorldController : MonoBehaviour
     {
         DayNightCycle();
         //SpawnZombies();
-        SpawnPickups();
+        //SpawnPickups();
     }
 
     void CheckIncrease()
@@ -83,6 +85,23 @@ public class WorldController : MonoBehaviour
         }
     }
 
+    void SpawnZombie()
+    {
+        float randTime;
+        if (nightTime)
+        {
+            randTime = Random.Range(1, 2);
+            Instantiate(zombie, zombieSpawns[Random.Range(0, 10)]);
+            Invoke("SpawnZombie", randTime);
+        }
+        else
+        {
+            randTime = Random.Range(3, 6);
+            Instantiate(zombie, zombieSpawns[Random.Range(0, 10)]);
+            Invoke("SpawnZombie", randTime);
+        }
+    }
+
     void SpawnZombies()
     {
         if (nightTime)
@@ -110,6 +129,42 @@ public class WorldController : MonoBehaviour
     public void TakenAmmo()
     {
         ammoAmount--;
+    }
+
+    void SpawnPickup()
+    {
+        float randTime = Random.Range(4, 8);
+        if (!nightTime)
+        {
+            if (medkitAmount <= 8 && Random.Range(1, 4) <= 2)
+            {
+                Instantiate(health, healthSpawns[Random.Range(0, 10)]);
+                Debug.Log("health spawned");
+                medkitAmount++;
+            }
+            if(ammoAmount <= 8 && Random.Range(1, 3) <= 2)
+            {
+                Instantiate(ammo, ammoSpawns[Random.Range(0, 10)]);
+                Debug.Log("ammo spawned");
+                ammoAmount++;
+            }
+        }
+        else
+        {
+            if (medkitAmount <= 8 && Random.Range(1, 6) <= 2)
+            {
+                Instantiate(health, healthSpawns[Random.Range(0, 10)]);
+                Debug.Log("health spawned");
+                medkitAmount++;
+            }
+            if (ammoAmount <= 8 && Random.Range(1, 5) <= 2)
+            {
+                Instantiate(ammo, ammoSpawns[Random.Range(0, 10)]);
+                Debug.Log("ammo spawned");
+                ammoAmount++;
+            }
+        }
+        Invoke("SpawnPickup", randTime);
     }
 
     void SpawnPickups()

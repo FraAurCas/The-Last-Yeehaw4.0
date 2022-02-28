@@ -17,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public Canvas pauseScreen;
 
     private float stamina = 100f;
-    private float staminaDecrease = .5f;
+    private float staminaDecrease = .25f;
     private float walkingSpeed = 4.0f;
 
     private int health = 100;
@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
 
     private float healAmount = 50.0f;
     private float damageAmount = 10.0f;
-    private int bulletAmount = 6;
 
     public GameObject world;
     public GameObject gun;
@@ -84,7 +83,7 @@ void Update()
 
     void checkSprint()
     {
-        if (Input.GetKey(KeyCode.LeftShift) && ((stamina > 0) && !recoveringStamina))
+        if (Input.GetKey(KeyCode.LeftShift) && stamina > 0 && !recoveringStamina)
         {
             speed = walkingSpeed * 2.0f;
             stamina -= staminaDecrease;
@@ -126,7 +125,7 @@ void Update()
 
         //Disables all scripts
         GetComponent<CameraController>().enabled = false;
-        gun.GetComponent<GunController>().enabled = false;
+        gun.GetComponent<WeaponController>().enabled = false;
         mainCamera.GetComponent<CameraController>().enabled = false;
         Cursor.lockState = CursorLockMode.Confined;
     }
@@ -138,7 +137,7 @@ void Update()
 
         //Enables all scripts
         GetComponent<CameraController>().enabled = true;
-        gun.GetComponent<GunController>().enabled = true;
+        gun.GetComponent<WeaponController>().enabled = true;
         mainCamera.GetComponent<CameraController>().enabled = true;
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -181,7 +180,11 @@ void Update()
 
         if (other.gameObject.tag.Equals("Ammo"))
         {
-            gun.GetComponent<GunController>().totalAmmo += bulletAmount;
+            foreach(IWeapon weapon in gun.GetComponent<WeaponController>().weapons)
+            {
+                if(weapon is Gun)
+                    ((Gun)weapon).totalAmmo += ((Gun)weapon).clipSize;
+            }
             Destroy(other.gameObject);
             world.GetComponent<WorldController>().TakenAmmo();
         }

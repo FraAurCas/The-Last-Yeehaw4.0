@@ -14,7 +14,7 @@ public class ZombieController : MonoBehaviour
     {
         waitbit();
         player = GameObject.FindGameObjectWithTag("Player");
-        NavMeshHit closestHit;
+        /*NavMeshHit closestHit;
         if(NavMesh.SamplePosition(transform.position, out closestHit, 500, 1))
         {
             player.transform.position = closestHit.position;
@@ -23,8 +23,9 @@ public class ZombieController : MonoBehaviour
         else
         {
             Debug.Log("Couldn't spawn zombie");
-        }
+        }*/
         nav = GetComponent<NavMeshAgent>();
+        nav.acceleration = 5f;
     }
     void Start()
     {
