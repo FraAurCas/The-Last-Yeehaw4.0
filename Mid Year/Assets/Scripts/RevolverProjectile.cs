@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RevolverProjectile : MonoBehavior
+public class RevolverProjectile : MonoBehaviour
 {
     public ParticleSystem particleSystem;
 
