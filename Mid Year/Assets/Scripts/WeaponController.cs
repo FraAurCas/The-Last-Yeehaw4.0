@@ -13,6 +13,8 @@ public class WeaponController : MonoBehaviour
     public GameObject knife;
 
     public ParticleSystem muzzleFlash;
+    public ParticleSystem revolverProjectile;
+    public ParticleSystem shotgunProjectile;
     public Animator gunAnimator;
     public Animator knifeAnimator;
 
