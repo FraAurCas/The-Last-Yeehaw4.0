@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class RevolverProjectile : MonoBehaviour
 {
-    public ParticleSystem particleSystem;
-    public GameObject impact;
+    public ParticleSystem partSyst;
+    public ParticleSystem impact;
     public int damage;
     List<ParticleCollisionEvent> colEvents = new List<ParticleCollisionEvent>();
     // Start is called before the first frame update
     void Start()
     {
-     	particleSystem = GetComponent<ParticleSystem>();   
+     	partSyst = GetComponent<ParticleSystem>();   
     }
 
     // Update is called once per frame
@@ -26,7 +26,7 @@ public class RevolverProjectile : MonoBehaviour
 
     private void OnParticleCollision(GameObject other)
     {
-	int events = particleSystem.GetCollisionEvents(other, colEvents);
+	int events = partSyst.GetCollisionEvents(other, colEvents);
 	
 	for (int i = 0; i < events; i++)
 	{
