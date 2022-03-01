@@ -358,6 +358,7 @@
 "Assets/Scripts/Melee.cs"
 "Assets/Scripts/PauseMode.cs"
 "Assets/Scripts/PlayerController.cs"
+"Assets/Scripts/Repeater.cs"
 "Assets/Scripts/Restart.cs"
 "Assets/Scripts/Revolver.cs"
 "Assets/Scripts/RevolverProjectile.cs"

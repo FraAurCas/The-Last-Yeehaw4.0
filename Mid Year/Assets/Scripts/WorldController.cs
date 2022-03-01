@@ -106,7 +106,7 @@ public class WorldController : MonoBehaviour
     {
         if (nightTime)
         {
-            if ((int)Random.Range(1, 100) == 50)
+            if ((int)Random.Range(1, 250) == 50)
             {
                 Instantiate(zombie, zombieSpawns[Random.Range(0, 10)]);
             }

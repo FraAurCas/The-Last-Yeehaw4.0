@@ -123,6 +123,72 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: 004aa021a42f9b74587bf90754f875b6, type: 2}
+--- !u!1001 &20004271
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 3648412275159338167}
+    m_Modifications:
+    - target: {fileID: 6860980878652484883, guid: 454b10e9b35061844a6dd8a8ef024612, type: 3}
+      propertyPath: impact
+      value: 
+      objectReference: {fileID: 1823006194408192067, guid: a2133e657a050cf4db4302d171e11292, type: 3}
+    - target: {fileID: 6860980878652484884, guid: 454b10e9b35061844a6dd8a8ef024612, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860980878652484884, guid: 454b10e9b35061844a6dd8a8ef024612, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860980878652484884, guid: 454b10e9b35061844a6dd8a8ef024612, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.91
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860980878652484884, guid: 454b10e9b35061844a6dd8a8ef024612, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.71
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860980878652484884, guid: 454b10e9b35061844a6dd8a8ef024612, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860980878652484884, guid: 454b10e9b35061844a6dd8a8ef024612, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860980878652484884, guid: 454b10e9b35061844a6dd8a8ef024612, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860980878652484884, guid: 454b10e9b35061844a6dd8a8ef024612, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860980878652484884, guid: 454b10e9b35061844a6dd8a8ef024612, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860980878652484884, guid: 454b10e9b35061844a6dd8a8ef024612, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860980878652484884, guid: 454b10e9b35061844a6dd8a8ef024612, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860980878652484887, guid: 454b10e9b35061844a6dd8a8ef024612, type: 3}
+      propertyPath: m_Name
+      value: Repeater
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 454b10e9b35061844a6dd8a8ef024612, type: 3}
+--- !u!4 &20004272 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6860980878652484884, guid: 454b10e9b35061844a6dd8a8ef024612, type: 3}
+  m_PrefabInstance: {fileID: 20004271}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &21252105
 GameObject:
   m_ObjectHideFlags: 0
@@ -538,6 +604,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6860980878652484882, guid: 70b27579bd976074b8375b423ae18f68, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860980878652484882, guid: 70b27579bd976074b8375b423ae18f68, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
       value: 0.21960784
       objectReference: {fileID: 0}
@@ -552,6 +622,10 @@ PrefabInstance:
     - target: {fileID: 6860980878652484882, guid: 70b27579bd976074b8375b423ae18f68, type: 3}
       propertyPath: CollisionModule.m_EnergyLossOnCollision.scalar
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6860980878652484882, guid: 70b27579bd976074b8375b423ae18f68, type: 3}
+      propertyPath: EmissionModule.m_Bursts.Array.data[0].repeatInterval
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 6860980878652484883, guid: 70b27579bd976074b8375b423ae18f68, type: 3}
       propertyPath: damage
@@ -3934,9 +4008,11 @@ MonoBehaviour:
   ammoCounter: {fileID: 610688586}
   gun: {fileID: 3648412275159306391}
   knife: {fileID: 360834962}
+  cam: {fileID: 0}
   muzzleFlash: {fileID: 1574686907}
   revolverProjectile: {fileID: 361056098}
   shotgunProjectile: {fileID: 77299039}
+  repeaterProjectile: {fileID: 1988896761}
   gunAnimator: {fileID: 3648412275159306392}
   knifeAnimator: {fileID: 360834963}
   reloading: 0
@@ -6926,6 +7002,10 @@ PrefabInstance:
       propertyPath: impact
       value: 
       objectReference: {fileID: 1823006194408192067, guid: a2133e657a050cf4db4302d171e11292, type: 3}
+    - target: {fileID: 1823006194408192067, guid: 27f90e5eeece74944b349ed7aa2c4001, type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 1823006194408192067, guid: 27f90e5eeece74944b349ed7aa2c4001, type: 3}
       propertyPath: CollisionModule.m_EnergyLossOnCollision.scalar
       value: 1
@@ -13174,6 +13254,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb422acdc199d6e42910f589b81c283b, type: 3}
+--- !u!198 &1988896761 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6860980878652484882, guid: 454b10e9b35061844a6dd8a8ef024612, type: 3}
+  m_PrefabInstance: {fileID: 20004271}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2003841789
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13895,6 +13980,7 @@ Transform:
   - {fileID: 3648412275159338171}
   - {fileID: 1574686908}
   - {fileID: 361056095}
+  - {fileID: 20004272}
   m_Father: {fileID: 940883767}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -90, z: 0}
