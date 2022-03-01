@@ -11,10 +11,11 @@ public class WeaponController : MonoBehaviour
     public Text ammoCounter;
     public GameObject gun;
     public GameObject knife;
-
+    public GameObject cam;
     public ParticleSystem muzzleFlash;
     public ParticleSystem revolverProjectile;
     public ParticleSystem shotgunProjectile;
+    public ParticleSystem repeaterProjectile;
     public Animator gunAnimator;
     public Animator knifeAnimator;
 
@@ -26,6 +27,7 @@ public class WeaponController : MonoBehaviour
         weapons = new List<IWeapon>();
         weapons.Add(ScriptableObject.CreateInstance<Revolver>());
         weapons.Add(ScriptableObject.CreateInstance<Shotgun>());
+        weapons.Add(ScriptableObject.CreateInstance<Repeater>());
         weapons.Add(ScriptableObject.CreateInstance<Knife>());
         weapon = new Weapon(this, weapons[0]);
     }
@@ -68,6 +70,13 @@ public class WeaponController : MonoBehaviour
             if (weapon._weapon is Gun && Input.GetKeyDown(KeyCode.R))
             {
                 StartReload((Gun)weapon._weapon);
+            }
+
+            if (Input.GetMouseButtonDown(1)){
+                GetComponent<Camera>().fieldOfView = 30;     
+            }
+            else if (Input.GetMouseButtonUp(1)){
+                GetComponent<Camera>().fieldOfView= 60;
             }
         }
     }
