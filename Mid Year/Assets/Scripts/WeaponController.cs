@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class WeaponController : MonoBehaviour
 {
-    public IWeapon _weapon;
+    public Weapon weapon;
     public List<IWeapon> weapons;
 
     public Text ammoCounter;
@@ -27,7 +27,7 @@ public class WeaponController : MonoBehaviour
         weapons.Add(ScriptableObject.CreateInstance<Revolver>());
         weapons.Add(ScriptableObject.CreateInstance<Shotgun>());
         weapons.Add(ScriptableObject.CreateInstance<Knife>());
-        _weapon = weapons[0];
+        weapon = new Weapon(this, weapons[0]);
     }
 
     // Update is called once per frame
@@ -37,12 +37,12 @@ public class WeaponController : MonoBehaviour
         
         if (!reloading && Input.GetKeyDown(KeyCode.Q))
         {
-            _weapon = weapons[(weapons.IndexOf(_weapon) + 1) % weapons.Count];
-            if (_weapon is Gun)
+            weapon = new Weapon(this, weapons[(weapons.IndexOf(weapon._weapon) + 1) % weapons.Count]);
+            if (weapon._weapon is Gun)
             {
                 gun.SetActive(true);
                 knife.SetActive(false);
-                ammoCounter.text = string.Format("{0}/{1}", ((Gun)_weapon).currentAmmo, ((Gun)_weapon).totalAmmo);
+                ammoCounter.text = string.Format("{0}/{1}", ((Gun)weapon._weapon).currentAmmo, ((Gun)weapon._weapon).totalAmmo);
             }
             else
             {
@@ -58,16 +58,16 @@ public class WeaponController : MonoBehaviour
         }
 
         else {
-            if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && Time.time > _weapon.AttackCooldown)
+            if ((Input.GetMouseButtonDown(0) || Input.GetKeyDown(KeyCode.Space)) && Time.time > weapon._weapon.AttackCooldown)
             {
-                _weapon.attack(this);
-                if(_weapon is Gun)
-                    ammoCounter.text = string.Format("{0}/{1}", ((Gun)_weapon).currentAmmo, ((Gun)_weapon).totalAmmo);
+                weapon.ExecuteAttack();
+                if(weapon._weapon is Gun)
+                    ammoCounter.text = string.Format("{0}/{1}", ((Gun)weapon._weapon).currentAmmo, ((Gun)weapon._weapon).totalAmmo);
             }
 
-            if (_weapon is Gun && Input.GetKeyDown(KeyCode.R))
+            if (weapon._weapon is Gun && Input.GetKeyDown(KeyCode.R))
             {
-                StartReload((Gun)_weapon);
+                StartReload((Gun)weapon._weapon);
             }
         }
     }
@@ -141,5 +141,21 @@ public class WeaponController : MonoBehaviour
         }
         ammoCounter.text = string.Format("{0}/{1}", gun.currentAmmo, gun.totalAmmo);
 
+    }
+
+    public class Weapon
+    {
+        public WeaponController wc;
+        public IWeapon _weapon;
+
+        public Weapon(WeaponController wc, IWeapon weapon)
+        {
+            this.wc = wc;
+            this._weapon = weapon;
+        }
+        public void ExecuteAttack()
+        {
+            _weapon.attack(wc);
+        }
     }
 }
